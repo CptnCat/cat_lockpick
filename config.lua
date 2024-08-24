@@ -1,5 +1,6 @@
 Config = {}
 Config.VersionCheck = true
+Config.Framework = 'esx' -- Supports ESX & QB
 
 Config.LockPickItem = 'lockpick' -- Specify the item name for the lockpick
 Config.RemoveLockpickOnUse = true -- Should the lockpick be removed after use?
