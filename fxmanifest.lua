@@ -7,9 +7,6 @@ version '1.0'
 
 lua54 'yes'
 
-author 'Malifornia'
-description '© Copyright'
-
 shared_scripts { 
     '@es_extended/imports.lua',
     '@ox_lib/init.lua',
