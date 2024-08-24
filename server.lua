@@ -24,5 +24,5 @@ ESX.RegisterUsableItem(Config.LockPickItem, function(source)
 end)
 
 if Config.VersionCheck then
-    lib.versionCheck('CptnCat/cat_lockpcik')
+    lib.versionCheck('CptnCat/cat_lockpick')
 end
