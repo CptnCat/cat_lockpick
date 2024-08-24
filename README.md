@@ -3,7 +3,7 @@ If you need assistance with the script, join my discord and I will help you. Ple
 [Discord](https://discord.gg/wPCTtQP7UT)
 
 # ✍️ Description
-Lockpick script for your FiveM server (ESX).
+Lockpick script for your FiveM server.
 
 # ⭐ Features
 - Configurable alarm during lockpicking
@@ -23,6 +23,6 @@ Click [HERE](https://streamable.com/94ev0w) to watch the preview.
 - Restart your server.
 
 ## 🔗 Dependencies
-- [es_extended](https://github.com/esx-framework/esx_core/releases)
+- [es_extended](https://github.com/esx-framework/esx_core/releases) or [qb-core](https://github.com/orgs/qbcore-framework/repositories)
 - [ox_lib](https://github.com/overextended/ox_lib)
 - [t3_lockpick](https://github.com/T3development/t3_lockpick) (OPTIONAL)
