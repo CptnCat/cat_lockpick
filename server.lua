@@ -1,71 +1,49 @@
 local framework = Config.Framework
 
 CreateThread(function()
-    if framework == 'qb' or framework == 'QB' then 
+    if framework == 'qb' or framework == 'QB' then
         local QBCore = exports['qb-core']:GetCoreObject()
+        if not QBCore then return lib.print.error("Unable to detect framework, make sure Config.Framework is set to the right framework") end
 
-        if QBCore then 
-            QBCore.Functions.CreateUseableItem(Config.LockPickItem, function(source, item)
-                local Player = QBCore.Functions.GetPlayer(source)
-                if not Player.Functions.GetItemByName(item.name) then return end
+        QBCore.Functions.CreateUseableItem(Config.LockPickItem, function(source, item)
+            local src = source
+            local Player = QBCore.Functions.GetPlayer(src)
+            if not Player.Functions.GetItemByName(item.name) then return end
 
-                local closestVehicle, lockstatus = lib.callback.await('cat_lockpick:getClosestVehicle', source)
+            local closestVehicle, lockstatus = lib.callback.await('cat_lockpick:getClosestVehicle', src)
+            if not closestVehicle then return TriggerClientEvent('QBCore:Notify', src, "No vehicle nearby.") end
 
-                if closestVehicle ~= nil then
-                    if lockstatus == 2 then
-                        local success = lib.callback.await('cat_lockpick:startLockpiking', source, closestVehicle)
+            if not (lockstatus == 2) then return TriggerClientEvent('QBCore:Notify', src, "The vehicle is unlocked.") end
 
-                        if Config.RemoveLockpickOnUse == true then
-                            if Config.RemoveOnlyOnFailure == true then
-                                if not success then
-                                    Player.Functions.RemoveItem('lockpick', 1)
-                                end
-                            else
-                                Player.Functions.RemoveItem('lockpick', 1)
-                            end
-                        end
-                    else
-                        TriggerClientEvent('QBCore:Notify', source, "The vehicle is unlocked.")
-                    end
-                else
-                    TriggerClientEvent('QBCore:Notify', source, "No vehicle nearby.")
-                end
-            end)
-        else
-            lib.print.error("Unable to detect framework, make sure Config.Framework is set to the right framework")
-        end
-    elseif framework == 'esx' or framework == 'ESX' then 
+            local success = lib.callback.await('cat_lockpick:startLockpiking', src, closestVehicle)
+
+            if not Config.RemoveLockpickOnUse then return end
+
+            if not Config.RemoveOnlyOnFailure then return Player.Functions.RemoveItem('lockpick', 1) end
+
+            if not success then return Player.Functions.RemoveItem('lockpick', 1) end
+        end)
+    elseif framework == 'esx' or framework == 'ESX' then
         local ESX = exports.es_extended:getSharedObject()
+        if not ESX then return lib.print.error("Unable to detect framework, make sure Config.Framework is set to the right framework") end
 
-        if ESX then 
-            ESX.RegisterUsableItem(Config.LockPickItem, function(source)
-                local xPlayer = ESX.GetPlayerFromId(source)
-                local closestVehicle, lockstatus = lib.callback.await('cat_lockpick:getClosestVehicle', source)
+        ESX.RegisterUsableItem(Config.LockPickItem, function(source)
+            local src = source
+            local xPlayer = ESX.GetPlayerFromId(src)
+            local closestVehicle, lockstatus = lib.callback.await('cat_lockpick:getClosestVehicle', src)
 
-                if closestVehicle ~= nil then
-                    if lockstatus == 2 then
-                        local success = lib.callback.await('cat_lockpick:startLockpiking', source, closestVehicle)
+            if not closestVehicle then return xPlayer.showNotification("No vehicle nearby.") end
 
-                        if Config.RemoveLockpickOnUse == true then
-                            if Config.RemoveOnlyOnFailure == true then
-                                if not success then
-                                    xPlayer.removeInventoryItem('lockpick', 1)
-                                end
-                            else
-                                xPlayer.removeInventoryItem('lockpick', 1)
-                            end
-                        end
-                    else
-                        xPlayer.showNotification("The vehicle is unlocked.")
-                    end
-                else
-                    xPlayer.showNotification("No vehicle nearby.")
-                end
-            end)
-        else
-            lib.print.error("Unable to detect framework, make sure Config.Framework is set to the right framework")
-        end
-    else 
+            if not (lockstatus == 2) then return xPlayer.showNotification("The vehicle is unlocked.") end
+            local success = lib.callback.await('cat_lockpick:startLockpiking', src, closestVehicle)
+
+            if not Config.RemoveLockpickOnUse then return end
+
+            if not Config.RemoveOnlyOnFailure then return xPlayer.removeInventoryItem('lockpick', 1) end
+
+            if not success then return xPlayer.removeInventoryItem('lockpick', 1) end
+        end)
+    else
         lib.print.error("Unable to detect framework, make sure Config.Framework is set to the right framework")
     end
 end)
