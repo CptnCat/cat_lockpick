@@ -3,7 +3,7 @@ game 'gta5'
 
 author 'EpicCat'
 description 'Lockpick Script'
-version '1.1.0'
+version '1.1.1'
 repository 'https://github.com/CptnCat/cat_lockpick'
 
 lua54 'yes'
