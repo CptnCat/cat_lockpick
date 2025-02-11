@@ -16,9 +16,19 @@ lib.callback.register('cat_lockpick:startLockpiking', function(vehicle)
         StartVehicleAlarm(vehicle)
     end
 
-    local success = exports["t3_lockpick"]:startLockpick("lockpick", nil, nil)
+    local success = false
+    if Config.UseT3Minigame then
+        local success = exports["t3_lockpick"]:startLockpick("lockpick", nil, nil)
 
-    if success then
+        if success then
+            SetVehicleDoorsLocked(vehicle, 1)
+            SetVehicleDoorsLockedForAllPlayers(vehicle, false)
+            SetVehicleNeedsToBeHotwired(vehicle, true)
+            IsVehicleNeedsToBeHotwired(vehicle)
+            TaskEnterVehicle(PlayerPedId(), vehicle, 5.0, -1, 1.0, 1, 0)
+        end
+    else
+        success = true
         SetVehicleDoorsLocked(vehicle, 1)
         SetVehicleDoorsLockedForAllPlayers(vehicle, false)
         SetVehicleNeedsToBeHotwired(vehicle, true)
