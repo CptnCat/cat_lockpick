@@ -10,9 +10,6 @@ Lockpick script for your FiveM server.
 - Option to keep or remove the item after use
 - Customizable export for any minigame
 
-# 👀 Usage
-I searched the FiveM forum and noticed there were only lockpick minigames, but no complete lockpick scripts. So, I decided to release this lockpick script.
-
 # 📹 Preview
 Click [HERE](https://streamable.com/94ev0w) to watch the preview.
 
