@@ -1,6 +1,6 @@
 # 🤖 Discord
 If you need assistance with the script, join my discord and I will help you. Please report any bugs on my discord.
-[Discord](https://discord.gg/wPCTtQP7UT)
+[Discord](https://discord.gg/KxZQSenzVb)
 
 # ✍️ Description
 Lockpick script for your FiveM server.
