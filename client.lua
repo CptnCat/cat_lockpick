@@ -9,7 +9,7 @@ lib.callback.register('cat_lockpick:getClosestVehicle', function()
     end
 end)
 
-lib.callback.register('cat_lockpick:startLockpiking', function(vehicle)
+lib.callback.register('cat_lockpick:startLockpicking', function(vehicle)
     if Config.EnableAlarm == true then
         SetVehicleAlarm(vehicle, true)
         SetVehicleAlarmTimeLeft(vehicle, Config.AlarmTimer * 1000)

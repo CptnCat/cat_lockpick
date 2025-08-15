@@ -13,7 +13,7 @@ CreateThread(function()
 
                 if closestVehicle ~= nil then
                     if lockstatus == 2 then
-                        local success = lib.callback.await('cat_lockpick:startLockpiking', source, closestVehicle)
+                        local success = lib.callback.await('cat_lockpick:startLockpicking', source, closestVehicle)
 
                         if Config.RemoveLockpickOnUse == true then
                             if Config.RemoveOnlyOnFailure == true then
@@ -44,7 +44,7 @@ CreateThread(function()
 
                 if closestVehicle ~= nil then
                     if lockstatus == 2 then
-                        local success = lib.callback.await('cat_lockpick:startLockpiking', source, closestVehicle)
+                        local success = lib.callback.await('cat_lockpick:startLockpicking', source, closestVehicle)
 
                         if Config.RemoveLockpickOnUse == true then
                             if Config.RemoveOnlyOnFailure == true then
