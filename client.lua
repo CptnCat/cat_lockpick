@@ -9,12 +9,26 @@ lib.callback.register('cat_lockpick:getClosestVehicle', function()
     end
 end)
 
+function alertPolice()
+    local coords = GetEntityCoords(PlayerPedId())
+    
+    if Config.Dispatch.system = '' then
+        return
+    elseif Config.Dispatch.system = 'roadphone' then
+        local position = {x = coords.x, y = coords.y, z = coords.z - 1}
+        TriggerServerEvent('roadphone:sendDispatch', GetPlayerServerId(PlayerId()), Config.Dispatch.message, Config.Dispatch.alertJob, position, false)
+    elseif Config.Dispatch.system = 'emergencydispatch' then
+    end
+end
+
 lib.callback.register('cat_lockpick:startLockpicking', function(vehicle)
     if Config.EnableAlarm == true then
         SetVehicleAlarm(vehicle, true)
         SetVehicleAlarmTimeLeft(vehicle, Config.AlarmTimer * 1000)
         StartVehicleAlarm(vehicle)
     end
+
+    alertPolice()
 
     local success = false
     if Config.UseT3Minigame then
@@ -38,3 +52,4 @@ lib.callback.register('cat_lockpick:startLockpicking', function(vehicle)
 
     return success
 end)
+
