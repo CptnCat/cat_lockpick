@@ -11,9 +11,11 @@ Config.RemoveOnlyOnFailure = false -- Should the lockpick be removed only when t
 Config.EnableAlarm = true -- Should the alarm be triggered when lockpicking?
 Config.AlarmTimer = 15 -- (in seconds) - How long should the alarm last after starting the lockpicking?
 
+-- [BETA]
 Config.Dispatch = {
     dispatchSystem = '', -- put the right string inside here: 'lbphone', 'roadphone', 'emergencydispatch' to disable just leave it ''  
     alertJob = 'police', -- the job that get's alerted
     title = 'Car Theft', -- title of dispatch
     message = 'A car is being lockpicked!' -- message of dispatch
 }
+
